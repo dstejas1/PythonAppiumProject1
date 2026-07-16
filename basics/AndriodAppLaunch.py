@@ -21,8 +21,20 @@ driver = webdriver.Remote(
     "http://127.0.0.1:4723",
     options=options
 )
+#signUp
 driver.find_element(By.XPATH,'//android.widget.Button[@content-desc="Login"]').click()
 time.sleep(2)
+driver.find_element(By.XPATH,'//android.widget.TextView[@text="Sign up"]').click()
+time.sleep(2)
+driver.find_element(AppiumBy.ACCESSIBILITY_ID,'input-email').send_keys("test@example.com")
+driver.find_element(AppiumBy.ACCESSIBILITY_ID,'input-password').send_keys("Test@123")
+driver.find_element(AppiumBy.ACCESSIBILITY_ID,'input-repeat-password').send_keys("Test@123")
+driver.find_element(By.XPATH,'//android.view.ViewGroup[@content-desc="button-SIGN UP"]').click()
+time.sleep(5)
+driver.find_element(By.XPATH,'//android.widget.Button[@resource-id="android:id/button1"]').click()
+time.sleep(2)
+#Login
+driver.find_element(By.XPATH,'//android.view.ViewGroup[@content-desc="button-login-container"]/android.widget.TextView[@text="Login"]').click()
 driver.find_element(By.XPATH,'//android.widget.EditText[@content-desc="input-email"]').send_keys("test@example.com")
 driver.find_element(AppiumBy.ACCESSIBILITY_ID,'input-password').send_keys("Test@123")
 driver.find_element(By.XPATH,'//android.view.ViewGroup[@content-desc="button-LOGIN"]').click()
