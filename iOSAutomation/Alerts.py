@@ -4,8 +4,11 @@ from sys import implementation
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
+from appium.webdriver.appium_service import AppiumService
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.by import By
+
+from basics.StartServer import appium_server
 
 desired_caps = {
     "platformName": "iOS",
@@ -15,6 +18,10 @@ desired_caps = {
     "automationName": "XCUITest",
     "app": "/Users/tejasd/Library/Developer/Xcode/DerivedData/UIKitCatalog-cykpnfbggdpjqcgegnfvdehfvyys/Build/Products/Debug-iphonesimulator/UIKitCatalog.app"
 }
+appium_server= AppiumService()
+appium_server.start()
+print(appium_server.is_running)
+print(appium_server.is_listening)
 
 options = XCUITestOptions().load_capabilities(desired_caps)
 
@@ -22,6 +29,7 @@ driver = webdriver.Remote(
     "http://127.0.0.1:4723",
     options=options
 )
+
 driver.implicitly_wait(40)
 driver.find_element(AppiumBy.ACCESSIBILITY_ID,'Alert Views').click()
 time.sleep(1)
@@ -51,5 +59,7 @@ driver.find_element(AppiumBy.ACCESSIBILITY_ID,'Confirm').click()
 driver.find_element(AppiumBy.ACCESSIBILITY_ID,'Destructive').click()
 driver.find_element(AppiumBy.ACCESSIBILITY_ID,'Safe Choice').click()
 
+
 time.sleep(5)
 driver.quit()
+appium_server.stop()
