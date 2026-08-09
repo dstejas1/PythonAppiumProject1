@@ -1,0 +1,34 @@
+import time
+from pydoc import text
+from sys import implementation
+
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
+from appium.options.ios import XCUITestOptions
+from appium.webdriver.appium_service import AppiumService
+from appium.webdriver.common.appiumby import AppiumBy
+from selenium.webdriver.common.by import By
+
+desired_caps = {
+    "platformName": "iOS",
+    "platformVersion": "26.5",
+    "deviceName": "iPhone 16 Pro",
+    "udid": "B57D299A-6602-4DC6-8C41-473AF8B46923",
+    "automationName": "XCUITest",
+    "app": "/Users/tejasd/Library/Developer/Xcode/DerivedData/UIKitCatalog-cykpnfbggdpjqcgegnfvdehfvyys/Build/Products/Debug-iphonesimulator/UIKitCatalog.app"
+}
+
+options = XCUITestOptions().load_capabilities(desired_caps)
+
+driver = webdriver.Remote(
+    "http://127.0.0.1:4723",
+    options=options
+)
+
+driver.implicitly_wait(40)
+text = driver.find_element(AppiumBy.ACCESSIBILITY_ID,'Alert Views').get_attribute("text")
+assert 'Alert Views' in text
+driver.find_element(AppiumBy.ACCESSIBILITY_ID,'Alert Views').click()
+
+time.sleep(5)
+driver.quit()
