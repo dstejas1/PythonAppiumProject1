@@ -43,7 +43,7 @@ def bypass_face_liveness(image_path):
     return response.status_code == 200
 
 # Path to a real face photo you'll supply manually
-image_path = "/Users/tejasd/Desktop/NRI.jpeg"   # TODO: update to your actual test image path
+image_path = "/Users/tejasd/Desktop/NRI.jpeg"
 
 bypass_success = bypass_face_liveness(image_path)
 
