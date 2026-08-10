@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 desired_caps = {
     "platformName": "iOS",
     "platformVersion": "18.7.9",
-    "deviceName": "iPhone 16 Pro",
+    "deviceName": "Akash Jambhulkar’s iPhone",
     "udid": "00008020-001A4C282E91002E",
     "automationName": "XCUITest",
     "app": "/Users/tejasd/Downloads/TrustGridSocial.ipa"
